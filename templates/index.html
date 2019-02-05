@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Secci</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{{url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename='css/grayscale.min.css')}}" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Paolo Danilo Secci</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/resume2019">Resume</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+          <h1 class="mx-auto my-0 text-uppercase">Data Architect</h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">SPECIALIZATIONS<br>Statistical Analysis, Machine Learning, Database Engineering, & Distributed Networks.</h2>
+          <a href="#about" class="btn btn-primary js-scroll-trigger">More Info</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-white mb-4">Summary of Human Capital</h2>
+            <p class="text-white-50">By leveraging my skills in statistics, artificial intelligence, and data system architecting, I can build predictive models and formulate concretely supported conclusions by analyzing trends in training data. In addition, I have developed expertise in data visualization to translate these scientific results into visual charts, animations, and GUIs to communicate these useful conclusions with my non-analyst colleagues.</p>
+            <h2 class="text-white mb-4">Paolo's Mission Statement</h2>
+            <p class="text-white-50">"to set the paradigm by consistent manifestation of exemplary behavior and shared dignity."</p>
+          </div>
+        </div>
+        <img src="{{url_for('static', filename='img/palms.png')}}" class="img-fluid" alt="">
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section bg-light"><h2 align="center">Projects</h2>
+      <div class="container">
+
+        <!-- Featured Project Row -->
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-8 col-lg-7">
+            <img class="img-fluid mb-3 mb-lg-0" src="{{url_for('static', filename='img/jordan-slam-dunk.jpg')}}" alt="">
+          </div>
+          <div class="col-xl-4 col-lg-5">
+
+            <div class="featured-text text-center text-lg-left">
+              <h4>Machine Learning:</h4><h6><a href="/LeSwishProphet">Le Swish Prophet</a></h6>
+              <p class="text-black-50 mb-0">a predictive, machine learning model designed to simulate games and matchups in the National Basketball Association (NBA). The model draws statistically supported conclusions by application of a self-engineered algorythm. For example, points, assists, and rebounds are estimated for each player based on a algorythmic mix of previous game performances and importances. Also, a score is predicted for each game based on positional match-ups and a series of estimated weighted moving averages on points, opponent points, points allowed, and opponent points allowed. This algorhytm can be applied to most other data sets to predict future outcomes based on collected records.</p>
+            </div>
+
+          </div>
+        </div>
+        <!-- 2222222 -->
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-8 col-lg-7">
+            <img class="img-fluid mb-3 mb-lg-0" src="{{url_for('static', filename='img/matheus-frade-yelphealth.jpg')}}" alt="">
+          </div>
+          <div class="col-xl-4 col-lg-5">
+
+            <div class="featured-text text-center text-lg-left">
+              <h4 class="text-black">API System Architecture:</h4><h6><a href="/YelpHealth">Yelp, I Got Food Poisoning!</a></h6>
+              <p class="text-black-50 mb-0">To test the null hypothesis that Scores by the LA Department of Health and Yelp reviews are correlated, my USC Viterbi Data Analytics team used a series of Yelp API requests to acquire data for over 52,000 restaurants throughout the Los Angeles area. By merging the Yelp data set with the LA Department of Health’s CSVs using a pandas dataframes, we were able to visualize the correlation between health scores and yelp reviews using a scatter plot with a line of best fit. By applying a chi-squared linear regression test, I failed to reject the null hypothesis with a p-value of 5%, a critical value of 29,832, a chi-squared value of 5,204, and 29,432 degrees of freedom. Thus concluding there does not exist a statistical correlation between the two variables.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project One Row
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6">
+            <img class="img-fluid" src="{{url_for('static', filename='img/matheus-frade-yelphealth.jpg')}}" alt="">
+          </div>
+          <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                  <h4 class="text-white">Misty</h4>
+                  <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                  <hr class="d-none d-lg-block mb-0 ml-0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <!-- Project Two Row
+        <div class="row justify-content-center no-gutters">
+          <div class="col-lg-6">
+            <img class="img-fluid" src="{{url_for('static', filename='img/matheus-frade-yelphealth.jpg')}}" alt="">
+          </div>
+          <div class="col-lg-6 order-lg-first">
+
+            <div class="text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                  <h4 class="text-black">API System Architecture:</h4><h6><a href="/yelp">Yelp, I Got Food Poisoning!</a></h6>
+                  <p class="mb-0 text-black-50">To test the null hypothesis that Scores by the LA Department of Health and Yelp reviews are correlated, my USC Viterbi Data Analytics team used a series of Yelp API requests to acquire data for over 52,000 restaurants throughout the Los Angeles area. By merging the Yelp data set with the LA Department of Health’s CSVs using a pandas dataframes, we were able to visualize the correlation between health scores and yelp reviews using a scatter plot with a line of best fit. By applying a chi-squared linear regression test, I failed to reject the null hypothesis with a p-value of 5%, a critical value of 29,832, a chi-squared value of 5,204, and 29,432 degrees of freedom. Thus concluding there does not exist a statistical correlation between the two variables.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        -->
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Address</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">8719 Airlane Avenue<br>Los Angeles, CA</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-envelope text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Email</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">
+                  <a href="#">paolosecci98@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Phone</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">+1 (310) 729-7223</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="social d-flex justify-content-center">
+          <a href="https://www.linkedin.com/in/paolodanilosecci/" class="mx-2">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.facebook.com/secci3" class="mx-2">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.github.com/paolosecci" class="mx-2">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black small text-center text-white-50">
+      <div class="container">
+        &copy; Secci 2019
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{url_for('static', filename='js/grayscale.min.js')}}"></script>
+
+  </body>
+
+</html>
