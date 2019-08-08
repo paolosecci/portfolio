@@ -1,27 +1,104 @@
-from flask import Flask, render_template, send_file, jsonify
+from flask import Flask, render_template, send_file, jsonify, request, redirect, url_for
 import  datetime
+import os
+import io
+import numpy as np
+import keras
+from keras.preprocessing import image
+from keras.preprocessing.image import img_to_array
+from keras.applications.xception import (Xception, preprocess_input, decode_predictions)
+from keras import backend as K
 
 app = Flask(__name__)
 
+#functions
+def load_model():
+    global model
+    global graph
+    model = Xception(weights="imagenet")
+    graph = K.get_session().graph
+def prepare_image(img):
+    img = img_to_array(img)
+    img = np.expand_dims(img, axis=0)
+    img = preprocess_input(img)
+    #return processed image
+    return img
+#call functions and set vars
+load_model()
+app.config['UPLOAD_FOLDER'] = 'Uploads'
+model = None
+graph = None
+
+########################
+######DEFINE ROUTES#####
+########################
+
 @app.route("/")
 def home():
-	return render_template("index.html")
+    return render_template("index.html")
 
 @app.route("/LeSwishProphet")
 def p1():
-	import localize_data
-	import os
-	os.system('python localize_data.py')
-	print("data updated @ ", datetime.datetime.now())
-	return render_template("00p1.html")
+    import localize_data
+    os.system('python localize_data.py')
+    print("data updated @ ", datetime.datetime.now())
+    return render_template("00p1.html")
 
-@app.route("/YelpHealth")
+@app.route("/EarthquakeTopology")
 def p2():
-	return send_file('static/tank/yelp_powerpoint.pdf')
+    return render_template("00p2.html")
+
+@app.route('/ImageProcessor/', methods=['GET', 'POST'])
+def p3():
+    data = {"success": False}
+    if request.method == 'POST':
+        if request.files.get('file'):
+            #read input file
+            file = request.files['file']
+            #read filename
+            filename = file.filename
+            #create os path to uploads directory
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            #load the saved image and resize to the Xception 299x299 pixels
+            image_size = (299, 299)
+            im = keras.preprocessing.image.load_img(filepath,target_size=image_size,grayscale=False)
+            #preprocess the image for classification
+            image = prepare_image(im)
+            global graph
+            with graph.as_default():
+                preds = model.predict(image)
+                res = decode_predictions(preds)
+                #print the res
+                print(res)
+                data["predictions"] = []
+                #loop over the results and add to returned predictions
+                for (imagenetID, label, prob) in results[0]:
+                    r = {"label": label, "probability": float(prob)}
+                    data["predictions"].append(r)
+                #store boolean for process success
+                data["success"] = True
+        return jsonify(data)
+
+    return '''
+    <!doctype html>
+    <title>Barad-Dûr</title>
+    <h1 align="center">Welcome to Barad-Dûr's Interface</h1>
+    <h2 align="center">Barad-Dûr is the Image Processing component of my segmented AI being, or neurologically the optical lobe. To process an image, upload the image to this interface which serves as a retina. Then press upload to send the data through my virtual optic nerve.<h2>
+    <br><h2 align="center">Choose Image File & Click Upload</h1>
+    <form method=post align="center" enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
+
+@app.route("/Batcave")
+def p4():
+    return render_template("00p4.html")
 
 @app.route("/resume2019")
 def resume():
-	return send_file('static/tank/PSResume.pdf')
+    return send_file('static/tank/PSResume.pdf')
 
 
 #for LeSwishProphet Demo
@@ -39,6 +116,8 @@ def make_days_since_col(df):
     for i in dates:
         days_since_arr.append(get_time_ellapsed(i))
     df['DAYS_SINCE_RN'] = days_since_arr
+    last_game = df['DAYS_SINCE_RN'][0]
+    df['DAYS_SINCE_RN'] = df['DAYS_SINCE_RN'] - last_game
     return df
 def get_time_ellapsed(str_date):
     ymd = str_date.split('-')
@@ -125,7 +204,7 @@ def predict_team(t):
 @app.route("/predict/<team>")
 def predict(team):
     with open('data/nba_player_boxscores.json') as file_in:
-        nba_json = json.load(file_in)
+    	nba_json = json.load(file_in)
     df = clean_df(make_json_df(nba_json))
     df = make_days_since_col(df)
     team_df = get_team_df(team, df)
@@ -152,4 +231,4 @@ def simgame(team1, team2):
     return jsonify([t1s, t2s])
 
 if __name__ == "__main__":
-	app.run(debug=True)
+    app.run(debug=True)

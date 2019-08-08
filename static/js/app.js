@@ -14,7 +14,7 @@ function init(){
     //initialize reference to select elements
     select1 = d3.select("#selDataset");
     select2 = d3.select("#selDataset2");
-    
+
     teams.forEach(function(team){
         select1.append("option")
             .text(team).property("value", team);
@@ -31,41 +31,42 @@ function playerStats1(team){
         var PANELname = d3.select("#player-name");
         var PANELstat = d3.select("#player-data");
         var PANELteam = d3.select("#team-data");
-        
+
         //clear any existing panel displays
         PANELname.html("");
         PANELstat.html("");
         PANELteam.html("");
-        
+
         //use `Object.entries` to display player statistics
         Object.entries(data[1]).forEach((player)=>{
             PANELname.append("h6").text(`${player[1]['NAME']}`);
             PANELstat.append("h6").text(`PTS: ${player[1]['PTS']} AST: ${player[1]['AST']} REB: ${player[1]['REB']}`);
         });
-        
+
         //user-feedback
         PANELteam.append("h6").text('waiting for opponent...');
     });
 }
 function playerStats2(team){
+    console.log("here67");
     t2n = team;
     d3.json(`/predict/${team}`).then((data)=>{
         //d3 to select panels
         var PANELname = d3.select("#player-name2");
         var PANELstat = d3.select("#player-data2");
         var PANELteam = d3.select("#team-data2");
-        
+
         //clear any existing panel displays
         PANELname.html("");
         PANELstat.html("");
         PANELteam.html("");
-        
+
         //use `Object.entries` to display player statistics
         Object.entries(data[1]).forEach((player)=>{
             PANELname.append("h6").text(`${player[1]['NAME']}`);
             PANELstat.append("h6").text(`PTS: ${player[1]['PTS']} AST: ${player[1]['AST']} REB: ${player[1]['REB']}`);
         });
-        
+
         //user-feedback
         PANELteam.append("h6").text("building matchups...");
         d3.select("#team-data").html("").append("h6").text("building matchups...")
@@ -80,23 +81,23 @@ function winningteam(){
         //get predicted scores from api
         t1s = api_response[0];
         t2s = api_response[1];
-        
+
         //get references to team output panels
         var PANELt1 = d3.select("#team-data");
         var PANELt2 = d3.select("#team-data2");
-        
+
         //display scores to team output panels
         PANELt1.html("").append("h1").text(Math.round(t1s));
         PANELt2.html("").append("h1").text(Math.round(t2s));
-        
+
         //log result to console
         console.log(t1n, ": ", t1s);
-        console.log(t2n, ": ", t2s); 
-        
+        console.log(t2n, ": ", t2s);
+
         //chose winner
         if(t1s > t2s){winningteam = t1n;}
         else{winningteam = t2n;}
-        
+
         //display winner
         var PANELchamp = d3.select("#winningteam");
         PANELchamp.html("")
@@ -104,7 +105,7 @@ function winningteam(){
                 .attr("src", "../static/img/logos/" + winningteam + "_logo.svg")
                 .attr("width", 400).attr("height", 400)
             .append("h1").text(get_full_name[winningteam]);
-    });                               
+    });
 }
 
 d3.selectAll("#calc").on("click", winningteam);

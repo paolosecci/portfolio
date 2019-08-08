@@ -17,14 +17,14 @@ def get_teams_data():
     print(re.status_code)
     nba_t_json = json.loads(re.text)
     return nba_t_json
-    
+
 #DATA LOCALIZATION
 def localize_data():
     nba_p_json = get_player_data()
-    nba_t_json = get_teams_data()
     with open("data/nba_player_boxscores.json", "w") as file_p_out:
         json.dump(nba_p_json, file_p_out)
+    nba_t_json = get_teams_data()
     with open("data/nba_team_boxscores.json", "w") as file_t_out:
         json.dump(nba_t_json, file_t_out)
-        
+
 localize_data();
