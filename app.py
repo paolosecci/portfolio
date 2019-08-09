@@ -44,8 +44,8 @@ def home():
 
 @app.route("/LeSwishProphet")
 def p1():
-    import localize_data
-    os.system('python localize_data.py')
+    #import localize_data
+    #os.system('python localize_data.py')
     print("data updated @ ", datetime.datetime.now())
     return render_template("00p1.html")
 
