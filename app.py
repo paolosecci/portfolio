@@ -3,6 +3,9 @@ import  datetime
 import os
 import io
 import numpy as np
+import pandas as pd
+import requests
+import json
 # import keras
 # from keras.preprocessing import image
 # from keras.preprocessing.image import img_to_array
@@ -10,6 +13,8 @@ import numpy as np
 # from keras import backend as K
 
 app = Flask(__name__)
+this_user_agent = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'}
+
 
 # #functions
 # def load_model():
