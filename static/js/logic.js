@@ -5,7 +5,7 @@ var pUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJS
 
 //Create a satellite view layer
 var satelliteLayer = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGF1cmVsaWMiLCJhIjoiY2pteG9icGYyM3ZvaTNxbnk2a2F6MDZmciJ9.ZQhdib9of9UJDKThb3b1QA", {
-    attribution: "Mapbox &copy | return to <a href=\"/#projects\">DEMO</a>",
+    attribution: "Mapbox &copy | return to <a href=\"/#projects\">Demo</a>",
     maxZoom: 18,
     id: "mapbox.satellite",
 });
