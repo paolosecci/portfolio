@@ -351,7 +351,7 @@ def p1():
 def p2():
     return render_template("00p2.html")
 
-@app.route('/Barad-Dûr/', methods=['GET', 'POST'])
+@app.route('/BaradDur/', methods=['GET', 'POST'])
 def p3():
     # data = {"success": False}
     # if request.method == 'POST':
