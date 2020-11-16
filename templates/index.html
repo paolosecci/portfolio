@@ -29,7 +29,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Paolo Danilo Secci</a>
+        <div class="profile-link">
+          <a class="navbar-brand js-scroll-trigger" href="#page-top">Paolo Danilo Secci</a>
+        </div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -57,8 +59,10 @@
     <header class="masthead">
       <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
-          <h1>Full Stack Demo</h1>
+          <h1 id="main-title">Full Stack Demo</h1>
           <h3 class="text-white-50 mx-auto mt-2 mb-5">Skills Showcased:<br>Statistical Analysis, API Systems Architecture, Convolutional Neural Networks, Database Engineering, & Linux Network Administration.</h3>
+          <br><br><br>
+          
           <a href="#about" class="btn btn-primary js-scroll-trigger">More Info</a>
         </div>
       </div>
@@ -68,93 +72,85 @@
     <section id="about" class="about-section text-center">
       <div class="container">
           <div class="col-lg-10 mx-auto">
+            <img class="profile-pic" src="{{url_for('static', filename='img/professional-profile-picture.jpg')}}" alt="is surfing the ephemeral spacetime continuum" height=200></img>
+            <br><br>
             <h5 class="text-white mb-4">Relevant Studies:<br>Data Analytics, Internets & Distributed Networks, AWS Database Essentials, Computer Architecture, Linux System Administration, Cloud Computing, Data Structures, iOS Application Development, Computer Organization, Discrete Structures, Quantum Physics, Multivariable Calculus, and Statistics.</h3>
-            <h5 class="text-white mb-4">Declaration of Human Capital:<br>By employing distributed computational clouds to engineer scalable data analysis systems, I can build predictive machine learning models and formulate concretely supported conclusions by analyzing trends in training data. In addition, I have developed expertise in data visualization to translate these scientific results into visual charts, animations, and GUIs to communicate these useful conclusions with my non-analyst colleagues.</h5>
+            <!--h5 class="text-white mb-4">Declaration of Human Capital:<br>By employing distributed computational clouds to engineer scalable data analysis systems, I can build predictive machine learning models and formulate concretely supported conclusions by analyzing trends in training data. In addition, I have developed expertise in data visualization to translate these scientific results into visual charts, animations, and GUIs to communicate these useful conclusions with my non-analyst colleagues.</h5-->
             <br><a href="#projects" class="btn btn-primary js-scroll-trigger">Projects</a>
+            <br><br>
+            <br><br>
           </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section bg-light"><h2 align="center">Projects</h2><br><br><br><br>
+    <section id="projects" class="projects-section bg-light"><h2 align="center">Projects</h2><br>
       <div class="container">
 
-        <!-- 555555555 -->
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" width=800 src="{{url_for('static', filename='img/bio2.gif')}}" alt="">
+        <!-- Le Swish Prophet -->
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/lebron3.gif')}}" alt="img-lsp" /></div>
+          <div class="col-lg-6">
+              <div class="bg-black text-center h-100 project">
+                  <div class="d-flex h-100">
+                      <div class="project-text w-100 my-auto text-center text-lg-left">
+                        <h4 class="text-white"><a class="project-title" href="/LeSwishProphet">Le Swish Prophet</a></h4>
+                        <h6><a class="project-category" href="/LeSwishProphet">Data Analytics:</a></h6>
+                        <p class="mb-0 text-white-50">
+                          This statistics-based application is designed to predict the outcomes of NBA games.
+                          To optimize its accuracy, my application implements a datamining API to hack into the NBA's official database for up-to-date statistics.
+                          The data is then wrangled and processed with pandas dataframes.
+                          Finally, my predictive algorithm draws upon the mathematical principles of regression and weighted moving averages to draw based conclusions.
+                        </p>
+                        <hr class="d-none d-lg-block mb-0 ml-0" />
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="col-xl-4 col-lg-5">
+      </div>
+      <!-- Bionic Visual Cortex -->
+      <div class="row justify-content-center no-gutters">
+          <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/sauron2.gif')}}" alt="img-bvc" /></div>
+          <div class="col-lg-6 order-lg-first">
+              <div class="bg-black text-center h-100 project">
+                  <div class="d-flex h-100">
+                      <div class="project-text w-100 my-auto text-center text-lg-right">
+                          <h4 class="text-white"><a id="bvc" class="project-title" href="/BionicVisualCortex">Bionic Visual Cortex</a></h4>
+                          <h6><a class="project-category" href="/BionicVisualCortex">A.I. Vision:</a></h6>
+                          <p class="mb-0 text-white-50">
+                            This UX interface is designed for the image processing component of my segmented AI being, or neurologically the optic lobe.
+                            Built on Convolutional Neural Networks for Deep Learning, my program loads a light-weight model from the Keras library.
+                            With the pre-processing of image files into multidimensional arrays, the application is able to carry out basic linear algebra to solve the complex problem of image classification using only 16MB of training data.
+                          </p>
+                          <hr class="d-none d-lg-block mb-0 mr-0" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-            <div class="featured-text text-center text-lg-left">
-              <h4 class="text-black">Object Relational Mapping & D3 Dynamic Webpages:</h4><h6>
-              <a href="/BioDiversity">BioDiversity Dashboard</a></h6>
-              <p class="text-black-50 mb-0">
-                Database Engineer
-                <br><br>founded on a SQL database, I am able to edit pulled data objects in my python application via object relational mapping. Once the data was relationally mapped to my Python aplication by the SQLAlchemy Python library, I architected an API System to establish routes for my JavaScript source code. To cope with a dynamic database, I employed D3, a JavaScript library. The result is a dynamic dashboard which visualizes statistical analysis on the biological diversity of belly buttons.</p>
+      <!-- Batcave -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/data_center.gif')}}" alt="img-lsp" /></div>
+        <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+                <div class="d-flex h-100">
+                    <div class="project-text w-100 my-auto text-center text-lg-left">
+                      <h4 class="text-white"><a class="project-title" href="/Batcave">Batcave</a></h4>
+                      <h6><a class="project-category" href="/Batcave">Cloud Server:</a></h6>
+                      <p class="mb-0 text-white-50">
+                        deployed Elastic Cloud Compute (EC2) Instance as admin for users to access Ubuntu server through ssh;
+                        employed Identity and Access Management (IAM) to delegate permissions and accounts to users;
+                        and maintained the firewall using UFW to fulfill role of CISO;
+                        responsible for cybersecurity of user’s private data.</p>
+                      <hr class="d-none d-lg-block mb-0 ml-0" />
+                    </div>
+                </div>
             </div>
-
-          </div>
         </div>
+    </div>
 
-        <!-- 111111111111111 -->
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" width=800 src="{{url_for('static', filename='img/kobe5.gif')}}" alt="">
-          </div>
-          <div class="col-xl-4 col-lg-5">
-
-            <div class="featured-text text-center text-lg-left">
-              <h4>Machine Learning:</h4>
-              <h6><a href="/LeSwishProphet">Le Swish Prophet</a></h6>
-              <p class="text-black-50 mb-0">
-                Data Analyst<br><br>
-                a predictive, machine learning model designed to simulate games and matchups in the National Basketball Association (NBA). The model draws statistically supported conclusions by application of a self-engineered algorythm. For example, points, assists, and rebounds are estimated for each player based on a algorythmic mix of previous game performances and importances. Also, a score is predicted for each game based on positional match-ups and a series of estimated weighted moving averages on points, opponent points, points allowed, and opponent points allowed. This algorhytm can be applied to most other data sets to predict future outcomes based on collected records.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- 2222222 -->
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" width=800 src="{{url_for('static', filename='img/quake.gif')}}" alt="">
-            <!-- eq_mapbox_img.jpg -->
-          </div>
-          <div class="col-xl-4 col-lg-5">
-
-            <div class="featured-text text-center text-lg-left">
-              <h4 class="text-black">Geographical Mapping:</h4>
-              <h6><a href="/QuakeTopology">Quake Topology</a></h6>
-              <p class="text-black-50 mb-0">
-                Software Architect
-                <br><br>to topologically visualize the robust data collected by the United States government, I employed a logarhythmic algorhytm to visualize the exponential earthquake scale, leaflet for geographical mapping with satellite precision, and mapbox for layering the earthquake data.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- 3333333333 -->
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" width=800 src="{{url_for('static', filename='img/mordor.gif')}}" alt="">
-          </div>
-          <div class="col-xl-4 col-lg-5">
-
-            <div class="featured-text text-center text-lg-left">
-              <h4 class="text-black">Artificial Image Processing:</h4><h6>
-              <a href="/Barad-Dûr">Barad-Dûr</a></h6>
-              <p class="text-black-50 mb-0">
-                AIP Bot Creator
-                <br><br>implemented Keras API over TensorFlow’s ML library to train data for Computer Vision and Pattern Recognition
-                built on Convolutional Neural Networks for Deep Learning; modeled after anatomical neuron networks
-                encoded an API system using Flask’s Python library; encoded web-compatible user interface using HTML.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- 4444444444444 -->
+        <!-- BATCAVE EC2 -->
         <div class="row align-items-center no-gutters mb-4 mb-lg-5">
           <div class="col-xl-8 col-lg-7">
             <img class="img-fluid mb-3 mb-lg-0" src="{{url_for('static', filename='img/data_center.gif')}}" alt="">
@@ -171,46 +167,6 @@
 
           </div>
         </div>
-
-        <!-- Project One Row
-        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="{{url_for('static', filename='img/matheus-frade-yelphealth.jpg')}}" alt="">
-          </div>
-          <div class="col-lg-6">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div class="project-text w-100 my-auto text-center text-lg-left">
-                  <h4 class="text-white">Misty</h4>
-                  <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
-                  <hr class="d-none d-lg-block mb-0 ml-0">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
-
-        <!-- Project Two Row
-        <div class="row justify-content-center no-gutters">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="{{url_for('static', filename='img/matheus-frade-yelphealth.jpg')}}" alt="">
-          </div>
-          <div class="col-lg-6 order-lg-first">
-
-            <div class="text-center h-100 project">
-              <div class="d-flex h-100">
-                <div class="project-text w-100 my-auto text-center text-lg-right">
-                  <h4 class="text-black">API System Architecture:</h4><h6><a href="/yelp">Yelp, I Got Food Poisoning!</a></h6>
-                  <p class="mb-0 text-black-50">To test the null hypothesis that Scores by the LA Department of Health and Yelp reviews are correlated, my USC Viterbi Data Analytics team used a series of Yelp API requests to acquire data for over 52,000 restaurants throughout the Los Angeles area. By merging the Yelp data set with the LA Department of Health’s CSVs using a pandas dataframes, we were able to visualize the correlation between health scores and yelp reviews using a scatter plot with a line of best fit. By applying a chi-squared linear regression test, I failed to reject the null hypothesis with a p-value of 5%, a critical value of 29,832, a chi-squared value of 5,204, and 29,432 degrees of freedom. Thus concluding there does not exist a statistical correlation between the two variables.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        -->
-
       </div>
     </section>
 
@@ -232,53 +188,59 @@
         <div class="row">
 
           <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Address</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">Milano, Milano<br>Italia</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-envelope text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Email</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">
-                  <a href="#">paolosecci98@gmail.com</a>
+            <a href="http://www.google.com/maps/place/20121+Milan,+Metropolitan+City+of+Milan">
+              <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                  <h4 class="text-uppercase m-0">Address</h4>
+                  <hr class="my-4">
+                  <div class="text-black-50">Milan, Italy 20121</div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Phone</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">+39 (347) 669-6390</div>
+            <a href="mailto:paolosecci98@gmail.com">
+              <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-envelope text-primary mb-2"></i>
+                  <h4 class="text-uppercase m-0">Email</h4>
+                  <hr class="my-4">
+                  <div class="text-black-50">
+                    paolosecci98@gmail.com
+                  </div>
+                </div>
               </div>
-            </div>
+            </a>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <a href="tel:+6494461709">
+              <div class="card py-4 h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                  <h4 class="text-uppercase m-0">Phone</h4>
+                  <hr class="my-4">
+                  <div class="text-black-50">+39 (347) 011-6975</div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
 
         <div class="social d-flex justify-content-center">
           <a href="https://www.linkedin.com/in/paolodanilosecci/" class="mx-2">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-linkedin fa-2x"></i>
           </a>
           <a href="https://www.facebook.com/secci3" class="mx-2">
-            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-facebook-f fa-2x"></i>
           </a>
           <a href="https://www.github.com/paolosecci" class="mx-2">
-            <i class="fab fa-github"></i>
+            <i class="fab fa-github fa-2x"></i>
           </a>
           <a href="https://www.instagram.com/paolosecci310" class="mx-2">
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-instagram fa-2x"></i>
           </a>
         </div>
 
@@ -288,7 +250,7 @@
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">
-        &copy; Secci 2019
+        &copy; Secci 2020
       </div>
     </footer>
 

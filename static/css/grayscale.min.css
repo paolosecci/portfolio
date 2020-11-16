@@ -135,9 +135,11 @@
     border:0
 }
 .btn-primary{
+    color: aliceblue;
     background-color:#1c242b
 }
 .btn-primary:hover{
+    color: aliceblue;
     background-color:#303d47
 }
 .btn-primary:focus{
@@ -148,18 +150,25 @@
     background-color:#303d47!important
 }
 .about-section{
-    padding-top:10rem;
-    background:-webkit-gradient(linear,left top,left bottom,from(#161616),color-stop(75%,rgba(22,22,22,.9)),to(rgba(22,22,22,.8)));
-    background:linear-gradient(to bottom,#161616 0,rgba(22,22,22,.9) 75%,rgba(22,22,22,.8) 100%)
+    padding-top:5rem;
+    background:-webkit-gradient(linear,left top,left bottom,from(#111d22),color-stop(25%,#111d22),to(#303d47));
+    background:linear-gradient(to bottom,#161616 0,#303d47 100%)
 }
 .about-section p{
     margin-bottom:5rem
 }
 .projects-section{
-    padding:10rem 0
+    padding:5rem 0
 }
 .projects-section .featured-text{
     padding:2rem
+}
+
+.project-title{
+    color: white;
+}
+.project-category{
+    color: #e1e9f7
 }
 
 @media (min-width:992px){
@@ -211,7 +220,7 @@
     border-bottom:.25rem solid #1c242b
 }
 .contact-section .card h4{
-    font-size:.8rem;
+    font-size:1rem;
     font-family:'Varela Round';
     text-transform:uppercase;
     letter-spacing:.15rem
@@ -226,10 +235,10 @@
 }
 .contact-section .social a{
     text-align:center;
-    height:3rem;
-    width:3rem;
+    height:4rem;
+    width:4rem;
     background:rgba(255,255,255,.1);border-radius:100%;
-    line-height:3rem;
+    line-height:4.9rem;
     color:rgba(255,255,255,.3)
 }
 .contact-section .social a:hover{
@@ -260,4 +269,8 @@ a:focus,a:hover{
 }
 footer{
     padding:5rem 0
+}
+
+.profile-pic{
+    border-radius: 50%;
 }

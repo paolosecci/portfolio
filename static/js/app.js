@@ -103,9 +103,10 @@ function winningteam(){
         PANELchamp.html("")
             .append("img")
                 .attr("src", "../static/img/logos/" + winningteam + "_logo.svg")
-                .attr("width", 400).attr("height", 400)
+                .attr("width", 250).attr("height", 250)
             .append("h1").text(get_full_name[winningteam]);
     });
+    window.scrollTo(0,document.body.scrollHeight);
 }
 
 d3.selectAll("#calc").on("click", winningteam);

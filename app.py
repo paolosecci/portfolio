@@ -6,399 +6,112 @@ import io
 import numpy as np
 import requests
 import json
-# import keras
-# from keras.preprocessing import image
-# from keras.preprocessing.image import img_to_array
-# from keras.applications.xception import (Xception, preprocess_input, decode_predictions)
-# from keras import backend as K
-#from flask_pymongo import PyMongo
-
-#NBA
 import pandas as pd
 
-#Hawaii
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
-from flask_sqlalchemy import SQLAlchemy
-
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'Uploads'
 
-#vegan user agent
-this_user_agent = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'}
+model = None
+graph = None
 
+import keras
+from keras.preprocessing import image
+from keras.preprocessing.image import img_to_array
+from keras.applications.mobilenet import (MobileNet, preprocess_input, decode_predictions)
+from keras import backend as K
 
-# #functions
-# def load_model():
-#     global model
-#     global graph
-#     model = Xception(weights="imagenet")
-#     graph = K.get_session().graph
-# def prepare_image(img):
-#     img = img_to_array(img)
-#     img = np.expand_dims(img, axis=0)
-#     img = preprocess_input(img)
-#     #return processed image
-#     return img
-# #call functions and set vars
-# load_model()
-# app.config['UPLOAD_FOLDER'] = 'Uploads'
-# model = None
-# graph = None
+#AI VISION FUNCTIONS
+def load_model():
+    global graph
+    global model
+    graph = K.get_session().graph
+    model = MobileNet(weights="imagenet")
+load_model()
 
-#for BioDiversity
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
-db = SQLAlchemy(app)
+def prepare_image(img):
+    img = img_to_array(img)
+    img = np.expand_dims(img, axis=0)
+    img = preprocess_input(img)
+    # return the processed image
+    return img
 
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(db.engine, reflect=True)
-
-# Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
-
-########################
-######DEFINE ROUTES#####
-########################
-
+#ROUTES
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/BioDiversity")
-def index():
-    """Return the homepage."""
-    return render_template("00p5.html")
-
-@app.route("/BioDiversity/names")
-def names():
-    """Return a list of sample names."""
-
-    # Use Pandas to perform the sql query
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
-
-
-@app.route("/BioDiversity/metadata/<sample>")
-def sample_metadata(sample):
-    """Return the MetaData for a given sample."""
-    sel = [
-        Samples_Metadata.sample,
-        Samples_Metadata.ETHNICITY,
-        Samples_Metadata.GENDER,
-        Samples_Metadata.AGE,
-        Samples_Metadata.LOCATION,
-        Samples_Metadata.BBTYPE,
-        Samples_Metadata.WFREQ,
-    ]
-
-    results = db.session.query(*sel).filter(Samples_Metadata.sample == sample).all()
-
-    # Create a dictionary entry for each row of metadata information
-    sample_metadata = {}
-    for result in results:
-        sample_metadata["sample"] = result[0]
-        sample_metadata["ETHNICITY"] = result[1]
-        sample_metadata["GENDER"] = result[2]
-        sample_metadata["AGE"] = result[3]
-        sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
-
-    print(sample_metadata)
-    return jsonify(sample_metadata)
-
-
-@app.route("/BioDiversity/samples/<sample>")
-def samples(sample):
-    """Return `otu_ids`, `otu_labels`,and `sample_values`."""
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Filter the data based on the sample number and
-    # only keep rows with values above 1
-    sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
-    # Format the data to send as json
-    data = {
-        "otu_ids": sample_data.otu_id.values.tolist(),
-        "sample_values": sample_data[sample].values.tolist(),
-        "otu_labels": sample_data.otu_label.tolist(),
-    }
-    return jsonify(data)
-
-# #for HAwaii Demo
-# def query_start_date(i):
-#     # Calculate the date 1 year ago from today
-#     now = datetime.datetime.now() #get NOW (datetime objects are not writable)
-#     if now.month > 9:
-#         search_start_date = str(now.year - i) + '-' + str(now.month) + '-' + str(now.day) #format to query data
-#     else:
-#         search_start_date = str(now.year - i) + '-0' + str(now.month) + '-' + str(now.day) #format to query data
-#
-#     #get most recent date
-#     #most_recent_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first().date
-#
-#     return search_start_date
-#
-# def create_plots(df, considered_data, most_recent_date):
-#     import matplotlib.pyplot as plt
-#     # Use Pandas Plotting with Matplotlib to plot the data
-#     df.plot(use_index=True, y='prcp', figsize=(10,7))
-#     plt.title("Avg Precipitation in Hawaii by Date", fontweight='bold',size=10)
-#     plt.xlabel(f"Date Range:  {considered_data} - {most_recent_date}", fontweight='bold', size=9)
-#     plt.ylabel("Precipitation (inches)", fontweight='bold', size=9)
-#     plt.legend(['precipitation'])
-#     plt.tight_layout()
-#
-#     # Rotate the xticks for the dates
-#     plt.yticks(size=7)
-#     plt.xticks(rotation=45, size=7)
-#
-#     plt.savefig('precipitation_amounts.png')
-#     return
-#
-# @app.route("/Hawaii")
-# def p5():
-#     ######LINK DB######
-#     #setup data_engine
-#     engine = create_engine("sqlite:///Resources/hawaii.sqlite")
-#     #create base from model
-#     Base = automap_base()
-#     #reflect tables
-#     Base.prepare(engine, reflect=True)
-#     Base.classes.keys()
-#     #create references to each table
-#     Measurement = Base.classes.measurement
-#     Station = Base.classes.station
-#     #link py to db
-#     session = Session(engine)
-#     #set inspector
-#     inspector = inspect(engine)
-#     ######DB LINKED########
-#
-#     from matplotlib import style
-#     style.use('fivethirtyeight')
-#
-#     #inspect!!!
-#     inspector = inspect(engine)
-#
-#     for table_name in inspector.get_table_names():
-#         for column in inspector.get_columns(table_name):
-#             print( table_name, "\t", column.get('name'), column.get('type'))
-#
-#     #num_in = input("enter the number of years of data you would like to analyze: ")
-#     considered_data = query_start_date(7)
-#     #get most recent date
-#     most_recent_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first().date
-#
-#     #retrieve the data and precipitation scores with session.query()
-#     print('retrieving the data and precipitation scores with session query...')
-#     re = session.query(Measurement.date, Measurement.prcp)
-#
-#     #filter via 7 years
-#     re = re.filter(Measurement.date >= considered_data)
-#
-#     #first create dictionary to give to pandas
-#     dict_for_df = {
-#         'date': [],
-#         'prcp': []
-#     }
-#
-#     #populate dictionary with results from query
-#     for row in re:
-#         dict_for_df['date'].append(row.date)
-#         dict_for_df['prcp'].append(row.prcp)
-#
-#     #make df from dict_for_df
-#     df = pd.DataFrame(dict_for_df)
-#
-#     #sort, index, clean the df
-#     df = df.sort_values(['date']).set_index(['date']).dropna()
-#
-#     create_plots(df, considered_data, most_recent_date)
-#
-#     #STATS summary
-#     summary_dict = {
-#         'count': df.count(),
-#         'mean': df.mean(),
-#         'std_dev': df.std(),
-#         'min': df.min(),
-#         'Q1': df.quantile(.25),
-#         'median': df.median(),
-#         'Q3': df.quantile(.75),
-#         'max': df.max()
-#     }
-#     summary_df = pd.DataFrame(summary_dict)
-#
-#     ### GOOD WAY
-#     return jsonify(summary_dict)
-#
-# @app.route("/Hawaii/api/v1.2/precipitation") #precipitation
-# def precipitation():
-#
-#     "Queries for the dates and temperature observations since 1 Jan 2017"
-#
-#     #query for dates and tobs
-#     prcp_re = session.query(Measurement.date, Measurement.tobs).filter(Measurement.date > '2017-01-01').all()
-#
-#     #create dictionary of lists, fill list
-#     prcp_dict = {
-#         'date': [],
-#         'tobs': [],
-#     }
-#     for prcp in prcp_re:
-#         prcp_dict['date'].append(Measurement.date)
-#         prcp_dict['tobs'].append(Measurement.tobs)
-#
-#     prcp_json = jsonify(prcp_dict)
-#     return prcp_json
-#
-# @app.route("/Hawaii/api/v1.2/stations") #stations
-# def stations():
-#
-#     "Returns a JSON list of stations from the dataset"
-#
-#     station_re = session.query(Station.station).all()
-#
-#     station_list = []
-#     for row in station_re:
-#         station_list.append(row.station)
-#
-#     stations_json = jsonify(station_list)
-#     return stations_json
-#
-# @app.route("/Hawaii/api/v1.2/tobs") #tobs
-# def tobs():
-#
-#     "Returns a JSON list of Temperature Observations (tobs) since 1 Jan 2017"
-#
-#     tobs_re = session.query(Measurement.tobs).filter(Measurement.date > '2017-01-01').all()
-#
-#     tobs_list = []
-#     for row in tobs_re:
-#         tobs_list.append(row.tobs)
-#
-#     tobs_json = jsonify(tobs_list)
-#     return tobs_json
-#
-# @app.route("/Hawaii/api/v1.2/<start>") #start
-# def start(start):
-#
-#     "Returns a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start"
-#
-#     s_re_uf = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs))
-#     s_re = s_re_uf.filter(Measurement.date >= start)
-#
-#     s_dict = {
-#         'min': s_re[0][0],
-#         'mean': s_re[0][1],
-#         'max': s_re[0][2]
-#     }
-#
-#     s_json = jsonify(s_dict)
-#     return s_json
-#
-# @app.route("/Hawaii/api/v1.2/<start>/<end>") #start/end
-# def start_end(start, end):
-#
-#     "Returns a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start-end"
-#
-#     se_re_uf = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs))
-#     se_re = se_re_uf.filter(Measurement.date >= start).filter(Measurement.date <= end)
-#
-#     se_dict = {
-#         'min': se_re[0][0],
-#         'mean': se_re[0][1],
-#         'max': se_re[0][2]
-#     }
-#
-#     se_json = jsonify(se_dict)
-#     return se_json
-#
-# @app.route("/AresMission/scrape")
-# def scraper():
-#     mars_data = mongo.db.mars_data
-#     mars_webscrape_re = mission_to_mars.scrape()
-#     mars_data.update({}, mars_webscrape_re, upsert=True)
-#     return redirect("/AresMission", code=302)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
-db = SQLAlchemy(app)
-
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(db.engine, reflect=True)
-
-# Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
-
 @app.route("/LeSwishProphet")
-def p1():
-    #import localize_data
-    #os.system('python localize_data.py')
+def le_swish_prophet():
     print("data updated @ ", datetime.datetime.now())
-    return render_template("00p1.html")
+    return render_template("LeSwishProphet.html")
 
-@app.route("/QuakeTopology")
-def p2():
-    return render_template("00p2.html")
+@app.route('/BionicVisualCortex/', methods=['GET', 'POST'])
+def barad_dur():
+    data = {"success": False}
+    if request.method == 'POST':
+        if request.files.get('file'):
+            # read the file
+            file = request.files['file']
+            filename = file.filename
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
 
-@app.route('/BaradDur/', methods=['GET', 'POST'])
-def p3():
-    # data = {"success": False}
-    # if request.method == 'POST':
-    #     if request.files.get('file'):
-    #         #read input file
-    #         file = request.files['file']
-    #         #read filename
-    #         filename = file.filename
-    #         #create os path to uploads directory
-    #         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    #         file.save(filepath)
-    #         #load the saved image and resize to the Xception 299x299 pixels
-    #         image_size = (299, 299)
-    #         im = keras.preprocessing.image.load_img(filepath,target_size=image_size,grayscale=False)
-    #         #preprocess the image for classification
-    #         image = prepare_image(im)
-    #         global graph
-    #         with graph.as_default():
-    #             preds = model.predict(image)
-    #             res = decode_predictions(preds)
-    #             #print the res
-    #             print(res)
-    #             data["predictions"] = []
-    #             #loop over the results and add to returned predictions
-    #             for (imagenetID, label, prob) in results[0]:
-    #                 r = {"label": label, "probability": float(prob)}
-    #                 data["predictions"].append(r)
-    #             #store boolean for process success
-    #             data["success"] = True
-    #     return jsonify(data)
+            #format image for processing
+            image_size = (224, 224)
+            im = keras.preprocessing.image.load_img(filepath,target_size=image_size,grayscale=False)
+            image = prepare_image(im)
 
-    return render_template("00p3.html")
+            #classify image with accuracy predictions
+            global graph
+            with graph.as_default():
+                preds = model.predict(image)
+                results = decode_predictions(preds)
+                print(results)
+
+                data["predictions"] = []
+                for (imagenetID, label, prob) in results[0]:
+                    r = {"label": label, "probability": float(prob)}
+                    data["predictions"].append(r)
+                data["success"] = True
+
+        return jsonify(data)
+
+    return '''
+    <!doctype html>
+    <html style="background-color:black; color:white; font-family: courier; text-align:center">
+        <title>Bionic Visual Cortex</title>
+        <br>
+        <h1 style="color:#a3b5cd; font-family: avenir; font-size:44px">BIONIC VISUAL CORTEX</h1>
+        
+        <p style="text-align:center">
+            <img height=300px src="../static/img/blue_iris.jpg"></img>
+        </p>
+
+        <p style="text-align:center; font-size:14px">To process an image for classification, execute the following:
+        <br>
+        <br>1. Press "Choose File" to upload the image to the bionic retina.&nbsp&nbsp&nbsp&nbsp
+        <br>2. Press "Analyze" to send the data through the virtual optic nerve.</p><br>
+
+        <form align="center" method=post enctype=multipart/form-data>
+            <input type=file name=file>
+            <input type=submit value=ANALYZE style="background-color:#e1e9f7">
+        </form>
+
+
+        <br>
+        <a href="/">return to demo</a>
+    </html>
+    '''
 
 @app.route("/Batcave")
-def p4():
-    return render_template("00p4.html")
+def batcave():
+    return render_template("Batcave.html")
 
 @app.route("/resume2019")
 def resume():
     return send_file('static/tank/PSResume.pdf')
 
-
-#for LeSwishProphet Demo
-import pandas as pd
-import requests
-import json
-this_user_agent = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'}
+#NBA ANALYSIS FUNCTIONS
 def clean_df(df):
     df = df.drop(columns=['SEASON_ID', 'PLAYER_ID', 'TEAM_ID','VIDEO_AVAILABLE'])
     df['GAME_DATE'] = df['GAME_DATE'].astype(str)
@@ -428,7 +141,8 @@ def get_player_df(player, df):
     player_df = df[df['PLAYER_NAME']==player]
     return player_df
 def predict_lineup(team_df):
-    lineup_df = team_df[team_df['DAYS_SINCE_RN']<=7]
+    days_since_last_game = team_df['DAYS_SINCE_RN'].min()
+    lineup_df = team_df[(team_df['DAYS_SINCE_RN'] - days_since_last_game)<=7]
     players = lineup_df['PLAYER_NAME'].unique()
     lineup_out = {}
     for player in players:
@@ -494,6 +208,13 @@ def predict_team(t):
     predicted_pts = t_df['pts_r'].ewm(alpha=.5).mean().iloc[-1]
     predicted_opp_pts = t_df['o_pts_r'].ewm(alpha=.5).mean().iloc[-1]
     return {'predicted_pts': predicted_pts, 'predicted_opp_pts': predicted_opp_pts}
+#for LeSwishProphet Demo
+@app.route("/LeSwishProphet/update")
+def LSP_update():
+    import localize_data
+    os.system('python localize_data.py')
+    del localize_data
+    return "Data Successfully Updated"
 @app.route("/predict/<team>")
 def predict(team):
     with open('data/nba_player_boxscores.json') as file_in:
