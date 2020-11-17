@@ -9,7 +9,7 @@ import json
 import pandas as pd
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'Uploads'
+app.config['UPLOAD_FOLDER'] = 'uploads'
 
 model = None
 graph = None
@@ -46,7 +46,7 @@ def le_swish_prophet():
     return render_template("LeSwishProphet.html")
 
 @app.route('/BionicVisualCortex/', methods=['GET', 'POST'])
-def barad_dur():
+def bionic_visual_cortex():
     data = {"success": False}
     if request.method == 'POST':
         if request.files.get('file'):
