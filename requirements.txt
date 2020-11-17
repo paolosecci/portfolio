@@ -6,7 +6,7 @@ gunicorn==19.9.0
 idna==2.7
 itsdangerous==1.1.0
 Jinja2==2.10
-Keras==2.1.2
+Keras==2.2.4
 MarkupSafe==1.1.0
 numpy==1.15.4
 pandas==0.23.4
