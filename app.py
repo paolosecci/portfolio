@@ -107,9 +107,10 @@ def bionic_visual_cortex():
 def batcave():
     return render_template("Batcave.html")
 
-@app.route("/resume2019")
-def resume():
-    return send_file('static/tank/PSResume.pdf')
+@app.route("/Resume")
+def resume2021():
+    return send_file("static/tank/Paolo2021.pdf")
+    
 
 #NBA ANALYSIS FUNCTIONS
 def clean_df(df):

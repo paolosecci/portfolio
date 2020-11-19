@@ -85,12 +85,50 @@
     height:auto;
     min-height:35rem;
     padding:15rem 0;
-    background:-webkit-gradient(linear,left top,left bottom,from(rgba(22,22,22,.1)),color-stop(75%,rgba(22,22,22,.5)),to(#161616)),url(../img/wave1.jpg);background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/wave1.jpg);
+    background:-webkit-gradient(linear,left top,left bottom,from(rgba(22,22,22,.1)),color-stop(75%,rgba(22,22,22,.5)),to(#161616)),url(../img/wave1.jpg);
+    background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/wave1.jpg);
     background-position:center;
     background-repeat:no-repeat;
     background-attachment:scroll;
     background-size:cover
 }
+@media only screen and (min-width: 411px){
+    .masthead{
+        position:relative;
+        width:100%;
+        height:auto;
+        min-height:35rem;
+        padding:15rem 0;
+        background:-webkit-gradient(linear,left top,left bottom,from(rgba(22,22,22,.1)),color-stop(75%,rgba(22,22,22,.5)),to(#161616)),url(../img/wave1.jpg);
+        background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/wave1.jpg);
+        background-position:center;
+        background-repeat:no-repeat;
+        background-attachment:scroll;
+        background-size:cover
+    }
+}
+@media only screen and (max-width: 410px){
+    .masthead{
+        position:relative;
+        width:100%;
+        height:auto;
+        min-height:35rem;
+        padding:15rem 0;
+        background:-webkit-gradient(linear,left top,left bottom,from(rgba(22,22,22,.1)),color-stop(75%,rgba(22,22,22,.5)),to(#161616)),url(../img/mobile-wave1.jpg);
+        background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/mobile-wave1.jpg);
+        background-position:center;
+        background-repeat:no-repeat;
+        background-attachment:scroll;
+        background-size:cover
+    }
+    #main-summary{
+        font-size: 15px;
+    }
+    #header-break{
+        display: none;
+    }
+}
+
 .masthead h1{
     color: lightGray;
     font-family:'Varela Round';
@@ -168,7 +206,7 @@
     color: white;
 }
 .project-category{
-    color: #e1e9f7
+    color: rgb(150, 58, 35);
 }
 
 @media (min-width:992px){
@@ -231,7 +269,7 @@
     width:3rem
 }
 .contact-section .social{
-    margin-top:5rem
+    margin-top:5rem;
 }
 .contact-section .social a{
     text-align:center;
