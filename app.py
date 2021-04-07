@@ -109,7 +109,7 @@ def batcave():
 
 @app.route("/Resume")
 def resume2021():
-    return send_file("static/tank/Paolo2021.pdf")
+    return send_file("static/tank/CV2021.pdf")
     
 
 #NBA ANALYSIS FUNCTIONS
