@@ -76,7 +76,7 @@
           <div class="col-lg-10 mx-auto">
             <img class="profile-pic" src="{{url_for('static', filename='img/professional-profile-picture.jpg')}}" alt="is surfing the ephemeral spacetime continuum" height=200></img>
             <br><br>
-            <h5 class="text-white mb-4">Relevant Coursework:<br>Statistics, Data Analysis & Visualization, Internets & Distributed Networks, AWS Cloud Computing, Electromagnetism, Computer Architecture, Data Structures, Database Essentials, Discrete Mathematics, Matrices & Linear Algebra, Multivariable Calculus, Microeconomics, and Macroeconomics</h3>
+            <h5 class="text-white mb-4">Relevant Coursework:<br><br>Data Analytics, Software Engineering, Information Systems & Enterprise Architecture, Algorithms, Databases, Data Structures, Internets, Computer Architecture, AWS Cloud Computing, Statistics, Matrices & Linear Algebra, Discrete Mathematics, Multivariable Calculus, Electromagnetism, Microeconomics, and Macroeconomics</h3>
             <!--h5 class="text-white mb-4">Declaration of Human Capital:<br>By employing distributed computational clouds to engineer scalable data analysis systems, I can build predictive machine learning models and formulate concretely supported conclusions by analyzing trends in training data. In addition, I have developed expertise in data visualization to translate these scientific results into visual charts, animations, and GUIs to communicate these useful conclusions with my non-analyst colleagues.</h5-->
             <br><a href="#projects" class="btn btn-primary js-scroll-trigger">Projects</a>
             <br><br>
@@ -89,6 +89,45 @@
     <section id="projects" class="projects-section bg-light"><h2 align="center">Projects</h2><br>
       <div class="container">
 
+        <!-- Batcave -->
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/abstract-data-2.gif')}}" alt="img-bc" /></div>
+          <div class="col-lg-6">
+              <div class="bg-black text-center h-100 project">
+                  <div class="d-flex h-100">
+                      <div class="project-text w-100 my-auto text-center text-lg-left">
+                        <h4 class="text-white"><a class="project-title" href="/Batcave">Batcave</a></h4>
+                        <h6><a class="project-category" href="/Batcave">Cloud Server:</a></h6>
+                        <p class="mb-0 text-white-50">
+                          The Ubuntu 16.04 LTS Instance deployed in AWS Elastic Cloud Compute (EC2) Instance was designed for ssh access.
+                          As system administrator I employ Identity and Access Management (IAM) to delegate permissions and accounts to users.
+                          As CISO I maintain the network firewall using UFW to responsibly handle the cybersecurity of my users' private data.</p>
+                        <hr class="d-none d-lg-block mb-0 ml-0" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- Bionic Visual Cortex -->
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+            <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/sauron2.gif')}}" alt="img-bvc" /></div>
+            <div class="col-lg-6 order-lg-first">
+                <div class="bg-black text-center h-100 project">
+                    <div class="d-flex h-100">
+                        <div class="project-text w-100 my-auto text-center text-lg-right">
+                            <h4 class="text-white"><a id="bvc" class="project-title" href="/BionicVisualCortex">Bionic Visual Cortex</a></h4>
+                            <h6><a class="project-category" href="/BionicVisualCortex">A.I. Vision:</a></h6>
+                            <p class="mb-0 text-white-50">
+                              This UX interface is designed for the image processing component of my segmented AI being, or neurologically the occipital lobe.
+                              Built on Convolutional Neural Networks for Deep Learning, my program loads a light-weight model from the Keras library.
+                              With the pre-processing of image files into multidimensional arrays, the application is able to carry out basic linear algebra to solve the complex problem of image classification using only 16MB of training data.
+                            </p>
+                            <hr class="d-none d-lg-block mb-0 mr-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Le Swish Prophet -->
         <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/lebron3.gif')}}" alt="img-lsp" /></div>
@@ -109,46 +148,7 @@
                   </div>
               </div>
           </div>
-      </div>
-      <!-- Bionic Visual Cortex -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-          <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/sauron2.gif')}}" alt="img-bvc" /></div>
-          <div class="col-lg-6 order-lg-first">
-              <div class="bg-black text-center h-100 project">
-                  <div class="d-flex h-100">
-                      <div class="project-text w-100 my-auto text-center text-lg-right">
-                          <h4 class="text-white"><a id="bvc" class="project-title" href="/BionicVisualCortex">Bionic Visual Cortex</a></h4>
-                          <h6><a class="project-category" href="/BionicVisualCortex">A.I. Vision:</a></h6>
-                          <p class="mb-0 text-white-50">
-                            This UX interface is designed for the image processing component of my segmented AI being, or neurologically the occipital lobe.
-                            Built on Convolutional Neural Networks for Deep Learning, my program loads a light-weight model from the Keras library.
-                            With the pre-processing of image files into multidimensional arrays, the application is able to carry out basic linear algebra to solve the complex problem of image classification using only 16MB of training data.
-                          </p>
-                          <hr class="d-none d-lg-block mb-0 mr-0" />
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- Batcave -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6"><img style="width:100%;height:100%;object-fit:cover;" class="img-fluid" src="{{url_for('static', filename='img/abstract-data-2.gif')}}" alt="img-bc" /></div>
-        <div class="col-lg-6">
-            <div class="bg-black text-center h-100 project">
-                <div class="d-flex h-100">
-                    <div class="project-text w-100 my-auto text-center text-lg-left">
-                      <h4 class="text-white"><a class="project-title" href="/Batcave">Batcave</a></h4>
-                      <h6><a class="project-category" href="/Batcave">Cloud Server:</a></h6>
-                      <p class="mb-0 text-white-50">
-                        The Ubuntu 16.04 LTS Instance deployed in AWS Elastic Cloud Compute (EC2) Instance was designed for ssh access.
-                        As system administrator I employ Identity and Access Management (IAM) to delegate permissions and accounts to users.
-                        As CISO I maintain the network firewall using UFW to responsibly handle the cybersecurity of my users' private data.</p>
-                      <hr class="d-none d-lg-block mb-0 ml-0" />
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
 
     <!-- resume button -->
     <section id="res" class="contact-section bg-black">
@@ -172,7 +172,7 @@
               <div class="card py-4 h-100">
                 <div class="card-body text-center">
                   <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                  <h4 class="text-uppercase m-0">Address</h4>
+                  <h4 class="text-uppercase m-0">Location</h4>
                   <hr class="my-4">
                   <div class="text-black-50">Milan, Italy 20121</div>
                 </div>
@@ -196,13 +196,13 @@
           </div>
 
           <div class="col-md-4 mb-3 mb-md-0">
-            <a href="tel:+6494461709">
+            <a href="tel:+393485730470">
               <div class="card py-4 h-100">
                 <div class="card-body text-center">
                   <i class="fas fa-mobile-alt text-primary mb-2"></i>
                   <h4 class="text-uppercase m-0">Phone</h4>
                   <hr class="my-4">
-                  <div class="text-black-50">+39 (347) 011-6975</div>
+                  <div class="text-black-50">+39.348.5730470</div>
                 </div>
               </div>
             </a>
@@ -229,9 +229,6 @@
 
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
-      <div class="container">
-        &copy; Secci 2021
-      </div>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
@@ -245,5 +242,8 @@
     <script src="{{url_for('static', filename='js/grayscale.min.js')}}"></script>
 
   </body>
+  <div class="container" style="text-align: center;">
+    &copy; Secci 2022
+  </div>
 
 </html>
